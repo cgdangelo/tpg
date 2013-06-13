@@ -1,5 +1,8 @@
+$large: "only screen and (min-width: #{$gridRowWidth + ($gridGutterWidth * 2)})"
+
 body
-  padding-top: 60px
+  @media #{$large}
+    padding-top: 60px
 
 #error_explanation
   @extend .alert
