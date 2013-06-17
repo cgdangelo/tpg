@@ -1,25 +1,27 @@
-%h1 Listing leagues
-
-%table
-  %tr
-    %th Name
-    %th Description
-    %th Active
-    %th Game
-    %th
-    %th
-    %th
-
-  - @leagues.each do |league|
+- model_class = League
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human.pluralize
+%table.table.table-striped
+  %thead
     %tr
-      %td= league.name
-      %td= league.description
-      %td= league.active
-      %td= league.game
-      %td= link_to 'Show', league
-      %td= link_to 'Edit', edit_league_path(league)
-      %td= link_to 'Destroy', league, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %th= model_class.human_attribute_name(:id)
+      %th= model_class.human_attribute_name(:name)
+      %th= model_class.human_attribute_name(:description)
+      %th= model_class.human_attribute_name(:active)
+      %th= model_class.human_attribute_name(:game_id)
+      %th= model_class.human_attribute_name(:created_at)
+      %th=t '.actions', :default => t("helpers.actions")
+  %tbody
+    - @leagues.each do |league|
+      %tr
+        %td= link_to league.id, league_path(league)
+        %td= league.name
+        %td= league.description
+        %td= league.active
+        %td= league.game_id
+        %td=l league.created_at
+        %td
+          = link_to t('.edit', :default => t("helpers.links.edit")), edit_league_path(league), :class => 'btn btn-mini'
+          = link_to t('.destroy', :default => t("helpers.links.destroy")), league_path(league), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
 
-%br
-
-= link_to 'New League', new_league_path
+= link_to t('.new', :default => t("helpers.links.new")), new_league_path, :class => 'btn btn-primary'

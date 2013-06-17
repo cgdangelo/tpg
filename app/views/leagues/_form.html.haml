@@ -1,22 +1,20 @@
-= form_for @league do |f|
-  - if @league.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@league.errors.count, "error")} prohibited this league from being saved:"
-      %ul
-        - @league.errors.full_messages.each do |msg|
-          %li= msg
-
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :description
-    = f.text_area :description
-  .field
-    = f.label :active
-    = f.check_box :active
-  .field
-    = f.label :game
-    = f.text_field :game
-  .actions
-    = f.submit 'Save'
+= form_for @league, :html => { :class => 'form-horizontal' } do |f|
+  .control-group
+    = f.label :name, :class => 'control-label'
+    .controls
+      = f.text_field :name, :class => 'text_field'
+  .control-group
+    = f.label :description, :class => 'control-label'
+    .controls
+      = f.text_area :description, :class => 'text_area'
+  .control-group
+    = f.label :active, :class => 'control-label'
+    .controls
+      = f.check_box :active, :class => 'check_box'
+  .control-group
+    = f.label :game_id, :class => 'control-label'
+    .controls
+      = f.number_field :game_id, :class => 'number_field'
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), leagues_path, :class => 'btn'

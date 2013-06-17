@@ -1,7 +1,4 @@
-%h1 Editing league
-
-= render 'form'
-
-= link_to 'Show', @league
-\|
-= link_to 'Back', leagues_path
+- model_class = League
+.page-header
+  %h1=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human
+= render :partial => "form"
