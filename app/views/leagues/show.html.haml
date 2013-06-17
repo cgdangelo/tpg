@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @league.name
+%p
+  %b Description:
+  = @league.description
+%p
+  %b Active:
+  = @league.active
+%p
+  %b Game:
+  = @league.game
+
+= link_to 'Edit', edit_league_path(@league)
+\|
+= link_to 'Back', leagues_path
