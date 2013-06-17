@@ -14,7 +14,7 @@
   .control-group
     = f.label :game_id, :class => 'control-label'
     .controls
-      = f.number_field :game_id, :class => 'number_field'
+      = select_tag :game_id, options_from_collection_for_select(Game.all, :id, :name, @league.game_id)
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
     = link_to t('.cancel', :default => t("helpers.links.cancel")), leagues_path, :class => 'btn'
