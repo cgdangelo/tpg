@@ -6,9 +6,13 @@
     .control-label
       = f.label :email
     .controls
-      = f.email_field :email
+      = f.email_field :email, :required => true
       .help-block
         Your email is kept private, used only for logging in and sending you password reminders or notifications.
+  .control-group
+    = f.label :alias, :class => 'control-label'
+    .controls
+      = f.text_field :alias, :required => true
   .control-group
     .control-label
       = f.label :password
