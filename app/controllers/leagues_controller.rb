@@ -4,7 +4,7 @@ class LeaguesController < ApplicationController
   # GET /leagues
   # GET /leagues.json
   def index
-    @leagues = League.all
+    @leagues = League.where(:active => true)
 
     respond_to do |format|
       format.html # index.html.erb
