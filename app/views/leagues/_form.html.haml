@@ -2,11 +2,11 @@
   .control-group
     = f.label :name, :class => 'control-label'
     .controls
-      = f.text_field :name, :class => 'text_field'
+      = f.text_field :name, :class => 'text_field input-xlarge'
   .control-group
     = f.label :description, :class => 'control-label'
     .controls
-      = f.text_area :description, :class => 'text_area'
+      = f.text_area :description, :class => 'text_area input-xlarge', :rows => 5 
   .control-group
     = f.label :active, :class => 'control-label'
     .controls
@@ -14,7 +14,10 @@
   .control-group
     = f.label :game_id, :class => 'control-label'
     .controls
-      = select_tag :game_id, options_from_collection_for_select(Game.where(:active => true), :id, :name, @league.game_id)
+      - if @league.id
+        %span.input-xlarge.uneditable-input= @league.game.name
+      - else
+        = select_tag :game_id, options_from_collection_for_select(Game.where(:active => true), :id, :name, @league.game_id)
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
     = link_to t('.cancel', :default => t("helpers.links.cancel")), leagues_path, :class => 'btn'
