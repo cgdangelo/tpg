@@ -1,4 +1,6 @@
 class LeaguesController < ApplicationController
+  load_and_authorize_resource
+
   # GET /leagues
   # GET /leagues.json
   def index
