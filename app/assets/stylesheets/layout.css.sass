@@ -19,3 +19,20 @@ body
 .field_with_errors
   input, select, textarea
     @extend input:focus:invalid
+
+.chzn-container-multi ul.chzn-choices
+  +border-radius(5px)
+  +box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.075))
+  +transition-property(border, box-shadow)
+  +transition-duration(0.2s)
+  +transition-timing-function(linear)
+  background-color: white
+  border: 1px solid #cccccc
+
+.chzn-container-active ul.chzn-choices
+  @extend input[type="text"]:focus
+  +box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6))
+  border-color: rgba(82, 168, 236, 0.8)
+
+.chzn-container-active.chzn-with-drop ul.chzn-choices
+  +border-bottom-radius(0)

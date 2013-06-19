@@ -61,6 +61,14 @@ class LeaguesController < ApplicationController
   def update
     @league = League.find(params[:id])
 
+    params[:admins] ||= []
+    current_admins = User.with_role(:league_admin, @league).map { |league| league.id.to_s } || []
+    new_admins = params[:admins] - current_admins
+    deleted_admins = current_admins - params[:admins]
+
+    new_admins.each { |new_admin_id| @league.add_admin User.find(new_admin_id) }
+    deleted_admins.each { |deleted_admin_id| @league.remove_admin User.find(deleted_admin_id) }
+
     respond_to do |format|
       if @league.update_attributes(params[:league])
         format.html { redirect_to @league, notice: 'League was successfully updated.' }

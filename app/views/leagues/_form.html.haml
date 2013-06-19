@@ -18,6 +18,10 @@
         %span.input-xlarge.uneditable-input= @league.game.name
       - else
         = select_tag :game_id, options_from_collection_for_select(Game.where(:active => true), :id, :name, @league.game_id)
+  .control-group
+    %label.control-label Admins
+    .controls
+      = select_tag :admins, options_from_collection_for_select(User.all, :id, :alias, User.with_role(:league_admin, @league).pluck(:id)), { :multiple => true, :class => 'input-xlarge', :"data-placeholder" => "Enter user aliases ..." }
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
     = link_to t('.cancel', :default => t("helpers.links.cancel")), leagues_path, :class => 'btn'
