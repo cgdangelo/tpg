@@ -1,4 +1,7 @@
 Tpg::Application.routes.draw do
+  resources :divisions
+
+
   resources :leagues
 
 
