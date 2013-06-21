@@ -30,7 +30,6 @@ class Ability
     # https://github.com/ryanb/cancan/wiki/Defining-Abilities
 
     user ||= User.new
-    Rails.logger.info user.has_role? :admin
     if user.has_role? :admin
       can :manage, :all
     else
