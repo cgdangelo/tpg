@@ -10,7 +10,15 @@
   .control-group
     = f.label :active, :class => 'control-label'
     .controls
-      = f.check_box :active, :class => 'check_box'
+      - if @league.game.active?
+        = f.check_box :active, :class => 'check_box'
+      - else
+        = f.check_box :active, :class => 'check_box', :disabled => true
+        .help-block
+          %p
+            %span.label.label-important Cannot activate
+            This league cannot be activated because its game is currently inactive.
+
   .control-group
     = f.label :game_id, :class => 'control-label'
     .controls

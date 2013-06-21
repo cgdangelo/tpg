@@ -15,11 +15,11 @@ class League < ActiveRecord::Base
 
   def activate!
     self.active = true
-    self.save
+    save
   end
 
   def deactivate!
     self.active = false
-    self.save
+    save
   end
 end

@@ -5,6 +5,10 @@ class Game < ActiveRecord::Base
   validates :active, :inclusion => { :in => [true, false] }
   after_save :set_leagues_inactive
 
+  def active?
+    self.active
+  end
+
   def set_leagues_inactive
     if !self.active
       League.where(:game_id => self.id).each do |league|
