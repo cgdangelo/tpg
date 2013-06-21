@@ -1,16 +1,12 @@
-= form_for @division do |f|
-  - if @division.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@division.errors.count, "error")} prohibited this division from being saved:"
-      %ul
-        - @division.errors.full_messages.each do |msg|
-          %li= msg
-
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :league
-    = f.text_field :league
-  .actions
-    = f.submit 'Save'
+= form_for @division, :html => { :class => 'form-horizontal' } do |f|
+  .control-group
+    = f.label :name, :class => 'control-label'
+    .controls
+      = f.text_field :name, :class => 'text_field'
+  .control-group
+    = f.label :league_id, :class => 'control-label'
+    .controls
+      = f.number_field :league_id, :class => 'number_field'
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), divisions_path, :class => 'btn'
