@@ -1,5 +1,6 @@
 class Game < ActiveRecord::Base
   resourcify
+  has_many :leagues
   attr_accessible :active, :description, :name
   validates_presence_of :description, :name
   validates :active, :inclusion => { :in => [true, false] }
