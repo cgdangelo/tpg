@@ -1,4 +1,6 @@
 class DivisionsController < ApplicationController
+  load_and_authorize_resource
+
   # GET /divisions
   # GET /divisions.json
   def index
