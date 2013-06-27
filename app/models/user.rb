@@ -5,5 +5,5 @@ class User < ActiveRecord::Base
 
   attr_accessible :email, :password, :password_confirmation, :remember_me, :alias
 
-  validates_uniqueness_of :email
+  validates_uniqueness_of :email, :alias
 end
