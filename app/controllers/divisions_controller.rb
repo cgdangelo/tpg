@@ -41,6 +41,7 @@ class DivisionsController < ApplicationController
   # POST /divisions.json
   def create
     @division = Division.new(params[:division])
+    @division.league = League.find(params[:league_id])
 
     respond_to do |format|
       if @division.save
