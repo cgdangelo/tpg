@@ -32,6 +32,8 @@ class Ability
     user ||= User.new
     if user.has_role? :admin
       can :manage, :all
+    elsif user.id
+      can :manage, Team
     else
       can :read, :all
     end
