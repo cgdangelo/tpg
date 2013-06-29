@@ -11,7 +11,7 @@
     = f.label :league_id, :class => 'control-label'
     .controls
       - if @team.id
-        %span.input-xlarge.uneditable-input= @league.game.name
+        %span.input-xlarge.uneditable-input= @team.league.name
       - else
         = select_tag :league_id, option_groups_from_collection_for_select(Game.where(:active => true), :leagues, :name, :id, :name, @team.league_id)
   .form-actions

@@ -43,6 +43,7 @@ class TeamsController < ApplicationController
   # POST /teams.json
   def create
     @team = Team.new(params[:team])
+    @team.league = League.find(params[:league_id])
 
     respond_to do |format|
       if @team.save
