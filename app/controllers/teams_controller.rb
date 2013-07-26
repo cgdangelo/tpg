@@ -45,8 +45,12 @@ class TeamsController < ApplicationController
     @team = Team.new(params[:team])
     @team.league = League.find(params[:league_id])
 
+    authorize! :create, @team
+
     respond_to do |format|
       if @team.save
+        current_user.add_role :team_leader, @team
+
         format.html { redirect_to @team, notice: 'Team was successfully created.' }
         format.json { render json: @team, status: :created, location: @team }
       else
