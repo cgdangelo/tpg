@@ -1,6 +1,10 @@
 Tpg::Application.routes.draw do
-  resources :teams
-  get 'teams/:id/join' => 'teams#join'
+  resources :teams do
+    member do
+      get 'join'
+      post 'register'
+    end
+  end
 
   resources :divisions
   resources :leagues

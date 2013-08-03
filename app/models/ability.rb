@@ -42,7 +42,7 @@ class Ability
       end
 
       # Maximum 1 team per user in a given league
-      can [:create, :join], Team do |team|
+      can [:create, :join, :register], Team do |team|
         Team.with_roles([:team_leader, :team_member], user).where(:league_id => team.league_id).empty?
       end
     else

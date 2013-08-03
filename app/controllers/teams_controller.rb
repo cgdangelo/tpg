@@ -94,4 +94,8 @@ class TeamsController < ApplicationController
       format.html
     end
   end
+
+  def register
+    @team = Team.find(params[:id])
+  end
 end
