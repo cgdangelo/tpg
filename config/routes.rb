@@ -1,16 +1,11 @@
 Tpg::Application.routes.draw do
-  resources :teams
-
+  resources :teams do
+    get 'join'
+  end
 
   resources :divisions
-
-
   resources :leagues
-
-
   resources :games
-
-
   devise_for :users
 
   # The priority is based upon order of creation:

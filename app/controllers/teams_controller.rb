@@ -87,4 +87,11 @@ class TeamsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def join
+    @team = Team.find(params[:id])
+    respond_to do |format|
+      format.html
+    end
+  end
 end

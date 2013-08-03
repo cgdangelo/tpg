@@ -46,6 +46,7 @@ class Ability
         Team.with_roles([:team_leader, :team_member], user).where(:league_id => team.league_id).empty?
       end
     else
+      can :read, Team
     end
   end
 end
