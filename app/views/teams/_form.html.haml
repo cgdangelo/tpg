@@ -8,6 +8,16 @@
     .controls
       = f.text_field :tag, :class => 'text_field'
   .control-group
+    = f.label :password, :class => 'control-label'
+    .controls
+      = f.password_field :password, :class => 'text_field'
+      .help-block
+        Leave blank if you don't want to change the team password.
+  .control-group
+    = f.label :password_confirmation, :class => 'control-label'
+    .controls
+      = f.password_field :password_confirmation, :class => 'text_field'
+  .control-group
     = f.label :league_id, :class => 'control-label'
     .controls
       - if @team.id
