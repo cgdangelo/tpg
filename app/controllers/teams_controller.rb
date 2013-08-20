@@ -49,8 +49,10 @@ class TeamsController < ApplicationController
 
     respond_to do |format|
       if @team.save
-        current_user.add_role :team_leader, @team
-        current_user.add_role :team_member, @team
+        @team.add_creator_roles current_user
+
+        owner_player = Player.new({:user => current_user, :team => @team, :guid => params[:guid]})
+        owner_player.save
 
         format.html { redirect_to @team, notice: 'Team was successfully created.' }
         format.json { render json: @team, status: :created, location: @team }
