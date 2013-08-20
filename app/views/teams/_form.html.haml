@@ -11,8 +11,9 @@
     = f.label :password, :class => 'control-label'
     .controls
       = f.password_field :password, :class => 'text_field'
-      .help-block
-        Leave blank if you don't want to change the team password.
+      - if @team.id
+        .help-block
+          Leave blank if you don't want to change the team password.
   .control-group
     = f.label :password_confirmation, :class => 'control-label'
     .controls
@@ -24,6 +25,16 @@
         %span.input-xlarge.uneditable-input= @team.league.name
       - else
         = select_tag :league_id, option_groups_from_collection_for_select(Game.where(:active => true), :leagues, :name, :id, :name, @team.league_id)
+
+  - if !@team.id
+    .control-group
+      %label.control-label GUID
+      .controls
+        = text_field :user, :guid, :class => 'text_field'
+        .help-block
+          :markdown
+            This is **your** GUID. You will be added to the new team's roster under this ID.
+
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
     = link_to t('.cancel', :default => t("helpers.links.cancel")), teams_path, :class => 'btn'
