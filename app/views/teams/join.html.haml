@@ -3,7 +3,7 @@
     Join team
     %small= @team.name
 
-= form_for @team, :url => register_team_path(@team), :html => { :class => 'form-horizontal' } do |f|
+= form_for @team, :url => register_team_path(@team), :method => :post, :html => { :class => 'form-horizontal' } do |f|
   .control-group
     = f.label :name, :class => 'control-label'
     .controls
