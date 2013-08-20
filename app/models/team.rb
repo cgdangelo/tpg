@@ -10,8 +10,8 @@ class Team < ActiveRecord::Base
   before_destroy :remove_all_associations
 
   def remove_all_associations
-    Role.where(:id => self.roles.destroy_all)
-    Player.where(:team_id => @id).destroy_all
+    Role.where(:id => self.roles).destroy_all
+    Player.where(:team_id => self.id).destroy_all
   end
 
   def add_creator_roles(user)
