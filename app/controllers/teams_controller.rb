@@ -51,7 +51,7 @@ class TeamsController < ApplicationController
       if @team.save
         @team.add_creator_roles current_user
 
-        owner_player = Player.new({:user => current_user, :team => @team, :guid => params[:guid]})
+        owner_player = Player.new({:user => current_user, :team => @team, :guid => params[:user][:guid]})
         owner_player.save
 
         format.html { redirect_to @team, notice: 'Team was successfully created.' }
@@ -103,6 +103,10 @@ class TeamsController < ApplicationController
     respond_to do |format|
       if @team.authenticate(params[:team][:password])
         current_user.add_role :team_member, @team
+
+        player = Player.new({:user => current_user, :team => @team, :guid => params[:user][:guid]})
+        player.save
+
         format.html { redirect_to @team, notice: 'You joined the team successfully.' }
       else
         format.html { redirect_to @team, alert: 'The password you entered was incorrect.' }
