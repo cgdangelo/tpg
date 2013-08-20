@@ -62,7 +62,7 @@ class LeaguesController < ApplicationController
     @league = League.find(params[:id])
 
     params[:admins] ||= []
-    current_admins = User.with_role(:league_admin, @league).map { |league| league.id.to_s } || []
+    current_admins = @league.admins.map { |admin| admin.id.to_s } || []
     new_admins = params[:admins] - current_admins
     deleted_admins = current_admins - params[:admins]
 

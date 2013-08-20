@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130621224905) do
+ActiveRecord::Schema.define(:version => 20130803230234) do
 
   create_table "divisions", :force => true do |t|
     t.string   "name"
@@ -41,6 +41,17 @@ ActiveRecord::Schema.define(:version => 20130621224905) do
 
   add_index "leagues", ["game_id"], :name => "index_leagues_on_game_id"
 
+  create_table "players", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "team_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "guid"
+  end
+
+  add_index "players", ["team_id"], :name => "index_players_on_team_id"
+  add_index "players", ["user_id"], :name => "index_players_on_user_id"
+
   create_table "roles", :force => true do |t|
     t.string   "name"
     t.integer  "resource_id"
@@ -51,6 +62,15 @@ ActiveRecord::Schema.define(:version => 20130621224905) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], :name => "index_roles_on_name"
+
+  create_table "teams", :force => true do |t|
+    t.string   "name"
+    t.string   "tag"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.integer  "league_id"
+    t.string   "password_digest"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

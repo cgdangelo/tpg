@@ -1,0 +1,25 @@
+.page-header
+  %h1
+    Join team
+    %small= @team.name
+
+= form_for @team, :url => register_team_path(@team), :method => :post, :html => { :class => 'form-horizontal' } do |f|
+  .control-group
+    = f.label :name, :class => 'control-label'
+    .controls
+      %span.input-xlarge.uneditable-input= @team.name
+  .control-group
+    %label.control-label GUID
+    .controls
+      = text_field :user, :guid, :class => 'text_field'
+  .control-group
+    = f.label :password, :class => 'control-label'
+    .controls
+      = f.password_field :password, :class => 'text_field'
+  .control-group
+    = f.label :password_confirmation, :class => 'control-label'
+    .controls
+      = f.password_field :password_confirmation, :class => 'text_field'
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), teams_path, :class => 'btn'

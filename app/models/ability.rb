@@ -30,10 +30,23 @@ class Ability
     # https://github.com/ryanb/cancan/wiki/Defining-Abilities
 
     user ||= User.new
+
     if user.has_role? :admin
       can :manage, :all
+    elsif user.id?
+      can :read, Team
+
+      # Team leaders can manage their teams
+      can [:update, :destroy], Team do |team|
+        user.has_role? :team_leader, team
+      end
+
+      # Maximum 1 team per user in a given league
+      can [:create, :join, :register], Team do |team|
+        Team.with_roles([:team_leader, :team_member], user).where(:league_id => team.league_id).empty?
+      end
     else
-      can :read, :all
+      can :read, Team
     end
   end
 end
