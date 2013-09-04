@@ -1,4 +1,6 @@
 class SeasonsController < ApplicationController
+  load_and_authorize_resource
+
   # GET /seasons
   # GET /seasons.json
   def index
@@ -41,6 +43,7 @@ class SeasonsController < ApplicationController
   # POST /seasons.json
   def create
     @season = Season.new(params[:season])
+    @season.league = League.find(params[:league_id])
 
     respond_to do |format|
       if @season.save
