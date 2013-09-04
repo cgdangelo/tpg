@@ -1,12 +1,17 @@
-%p#notice= notice
+- model_class = Week
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human
 
 %p
-  %b Name:
+  %strong= model_class.human_attribute_name(:name) + ':'
+  %br
   = @week.name
 %p
-  %b Season:
-  = @week.season
+  %strong= model_class.human_attribute_name(:season_id) + ':'
+  %br
+  = @week.season_id
 
-= link_to 'Edit', edit_week_path(@week)
-\|
-= link_to 'Back', weeks_path
+.form-actions
+  = link_to t('.back', :default => t("helpers.links.back")), weeks_path, :class => 'btn'
+  = link_to t('.edit', :default => t("helpers.links.edit")), edit_week_path(@week), :class => 'btn'
+  = link_to t('.destroy', :default => t("helpers.links.destroy")), week_path(@week), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
