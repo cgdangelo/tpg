@@ -1,4 +1,7 @@
 Tpg::Application.routes.draw do
+  resources :seasons
+
+
   resources :teams do
     member do
       get 'join'

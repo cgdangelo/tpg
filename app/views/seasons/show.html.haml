@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @season.name
+%p
+  %b Active:
+  = @season.active
+%p
+  %b League:
+  = @season.league
+
+= link_to 'Edit', edit_season_path(@season)
+\|
+= link_to 'Back', seasons_path
