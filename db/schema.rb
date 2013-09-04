@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130803230234) do
+ActiveRecord::Schema.define(:version => 20130904023753) do
 
   create_table "divisions", :force => true do |t|
     t.string   "name"
@@ -63,6 +63,16 @@ ActiveRecord::Schema.define(:version => 20130803230234) do
   add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], :name => "index_roles_on_name"
 
+  create_table "seasons", :force => true do |t|
+    t.string   "name"
+    t.boolean  "active"
+    t.integer  "league_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "seasons", ["league_id"], :name => "index_seasons_on_league_id"
+
   create_table "teams", :force => true do |t|
     t.string   "name"
     t.string   "tag"
@@ -97,5 +107,14 @@ ActiveRecord::Schema.define(:version => 20130803230234) do
   end
 
   add_index "users_roles", ["user_id", "role_id"], :name => "index_users_roles_on_user_id_and_role_id"
+
+  create_table "weeks", :force => true do |t|
+    t.string   "name"
+    t.integer  "season_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "weeks", ["season_id"], :name => "index_weeks_on_season_id"
 
 end
