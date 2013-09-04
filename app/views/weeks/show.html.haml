@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @week.name
+%p
+  %b Season:
+  = @week.season
+
+= link_to 'Edit', edit_week_path(@week)
+\|
+= link_to 'Back', weeks_path
