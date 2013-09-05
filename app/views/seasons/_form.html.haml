@@ -13,7 +13,7 @@
       - if @season.id
         %span.input-xlarge.uneditable-input= @season.league.name
       - else
-        = select_tag :league_id, option_groups_from_collection_for_select(Game.all, :leagues, :name, :id, :name, @season.league_id)
+        = select_tag :league_id, option_groups_from_collection_for_select(Game.active_games, :leagues, :name, :id, :name, @season.league_id)
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
     = link_to t('.cancel', :default => t("helpers.links.cancel")), seasons_path, :class => 'btn'
