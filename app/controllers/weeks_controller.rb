@@ -1,4 +1,6 @@
 class WeeksController < ApplicationController
+  load_and_authorize_resource
+
   # GET /weeks
   # GET /weeks.json
   def index
