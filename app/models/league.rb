@@ -2,6 +2,7 @@ class League < ActiveRecord::Base
   resourcify
   belongs_to :game
   has_many :divisions
+  has_many :seasons
   attr_accessible :active, :description, :name
   validates_presence_of :description, :name
   validates :active, :inclusion => { :in => [true, false] }
